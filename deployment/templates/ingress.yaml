@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations: {}
+  labels:
+    name: {{ include "termbin.fullname" . }}
+  name: {{ include "termbin.fullname" . }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - backend:
+              service:
+                name: {{ include "termbin.fullname" . }}-web
+                port:
+                  number: 80
+            pathType: ImplementationSpecific
+{{- if .Values.ingress.tls.enabled }}
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+{{- end }}

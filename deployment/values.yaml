@@ -1,0 +1,8 @@
+image:
+  repository: joshferrell/fiche
+  tag: 0.9.1
+
+ingress:
+  host: termbin.somedomain.com
+  tls:
+    enabled: false
